@@ -13,7 +13,7 @@ To build yourself, you need a Node.js environment.
 
 ## Maintain by author
 
-- Game events of *The Idolmaster Cinderella Girls: Starlight Stage*
-- Game events of *The Idolmaster Million Live: Theater Days*
-- Game events of *Kantai Collection*
-- Game events of *Kirara Fantasia*
+- Game events of [The Idolmaster Cinderella Girls: Starlight Stage](https://cinderella.idolmaster.jp/sl-stage/)
+- Game events of [The Idolmaster Million Live: Theater Days](https://millionlive.idolmaster.jp/theaterdays/)
+- Game events of [Kantai Collection](http://games.dmm.com/detail/kancolle/)
+- Game events of [Kirara Fantasia](https://kirarafantasia.com/)
