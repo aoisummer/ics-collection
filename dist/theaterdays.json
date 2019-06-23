@@ -443,5 +443,10 @@
         "SUMMARY": "ミリコレ！～MILLIONLIVE COLLECTION～",
         "DTSTART": "2019-06-12T06:00:00.000Z",
         "DTEND": "2019-06-17T11:59:59.000Z"
+    },
+    {
+        "SUMMARY": "プラチナスターツアー～White Vows～",
+        "DTSTART": "2019-06-19T06:00:00.000Z",
+        "DTEND": "2019-06-26T11:59:59.000Z"
     }
 ]
