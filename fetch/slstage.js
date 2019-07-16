@@ -24,11 +24,10 @@ function parseData(str) {
 module.exports = async function () {
     const url = 'https://starlight.kirara.ca/history';
     console.log('Fetch:', url);
-    const html = await utils.pRequest({ url }).catch(() => false);
-    
-    if (html === false) {
-        console.log('Error: Network error.');
-        process.exit();
+    try {
+        const html = await utils.pRequest({ url });
+        return parseData(html);
+    } catch (err) {
+        return Promise.reject(err);
     }
-    return parseData(html);
 };
