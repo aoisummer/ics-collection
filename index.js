@@ -29,7 +29,7 @@ const utils = require('./utils');
             data = await fn();
             util.promisify(fs.writeFile)(file1, JSON.stringify(data, null, 4));
         } else if (fs.existsSync(file1)) {
-            const content = await utils.pReadFile(file1);
+            const content = await util.promisify(fs.readFile)(file1);
             data = JSON.parse(content);
         }
         if (!data) {
