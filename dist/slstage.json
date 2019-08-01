@@ -683,5 +683,10 @@
         "SUMMARY": "バベル",
         "DTSTART": "2019-07-22T06:00:00.000Z",
         "DTEND": "2019-07-28T11:59:59.000Z"
+    },
+    {
+        "SUMMARY": "LIVE Groove Vocal burst",
+        "DTSTART": "2019-08-01T06:00:00.000Z",
+        "DTEND": "2019-08-08T11:59:59.000Z"
     }
 ]
