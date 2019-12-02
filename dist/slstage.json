@@ -743,5 +743,10 @@
         "SUMMARY": "Secret Daybreak",
         "DTSTART": "2019-11-20T06:00:00.000Z",
         "DTEND": "2019-11-27T11:59:59.000Z"
+    },
+    {
+        "SUMMARY": "LIVE Parade",
+        "DTSTART": "2019-11-30T06:00:00.000Z",
+        "DTEND": "2019-12-08T11:59:59.000Z"
     }
 ]
