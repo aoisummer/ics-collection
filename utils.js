@@ -1,11 +1,11 @@
 
 function convertToICS(data, name) {
     const icalendar = require('icalendar');
-    const uuid = require('uuid/v3');
+    const { v3: uuidv3 } = require('uuid');
     const ical = new icalendar.iCalendar();
 
     data.forEach((e, i) => {
-        const uid = uuid(['http://icalendar.example.com', name, i].join('/'), uuid.URL);
+        const uid = uuidv3(['http://icalendar.example.com', name, i].join('/'), uuidv3.URL);
         const event = new icalendar.VEvent(uid);
 
         for (let k in e) {
