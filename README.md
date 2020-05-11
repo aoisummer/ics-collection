@@ -11,9 +11,9 @@ To build yourself, you need a Node.js environment.
 3. `npm install`
 4. `npm start <name>`
 
-## Maintain by author
+### Maintain by author
 
-- Game events of [The Idolmaster Cinderella Girls: Starlight Stage](https://cinderella.idolmaster.jp/sl-stage/)
-- Game events of [The Idolmaster Million Live: Theater Days](https://millionlive.idolmaster.jp/theaterdays/)
-- Game events of [Kantai Collection](http://games.dmm.com/detail/kancolle/)
-- Game events of [Kirara Fantasia](https://kirarafantasia.com/)
+- Game events of *The Idolmaster Cinderella Girls: Starlight Stage*
+- Game events of *The Idolmaster Million Live: Theater Days*
+- Game events of *Kantai Collection*
+- Game events of *Kirara Fantasia*
