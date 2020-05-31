@@ -833,5 +833,10 @@
         "SUMMARY": "不埒なCANVAS",
         "DTSTART": "2020-05-19T06:00:00.000Z",
         "DTEND": "2020-05-27T11:59:59.000Z"
+    },
+    {
+        "SUMMARY": "LIVE Groove Vocal burst",
+        "DTSTART": "2020-05-31T03:00:00.000Z",
+        "DTEND": "2020-06-07T11:59:59.000Z"
     }
 ]
