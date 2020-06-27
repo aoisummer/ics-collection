@@ -1,7 +1,7 @@
+const icalendar = require('icalendar');
+const { v3: uuidv3 } = require('uuid');
 
 function convertToICS(data, name) {
-    const icalendar = require('icalendar');
-    const { v3: uuidv3 } = require('uuid');
     const ical = new icalendar.iCalendar();
 
     data.forEach((e, i) => {
@@ -23,22 +23,4 @@ function getType(value) {
     return Object.prototype.toString.call(value).slice(8, -1);
 }
 
-function pRequest(options) {
-    const request = require('request');
-
-    return new Promise((resolve, reject) => {
-        request(options, (error, response, body) => {
-            if (error || response.statusCode !== 200) {
-                reject(error || new Error('Network error.'));
-            } else {
-                resolve(body);
-            }
-        });
-    });
-}
-
-module.exports = {
-    convertToICS,
-    getType,
-    pRequest
-};
+module.exports = { convertToICS, getType };

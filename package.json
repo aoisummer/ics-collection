@@ -1,6 +1,6 @@
 {
   "name": "ics-collection",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/aoisummer/ics-collection",
   "dependencies": {
+    "axios": "^0.19.2",
     "icalendar": "^0.7.1",
     "iconv-lite": "^0.4.24",
-    "jsdom": "^16.2.1",
-    "request": "^2.88.2",
-    "uuid": "^7.0.2"
+    "jsdom": "^16.2.2",
+    "uuid": "^7.0.3"
   }
 }

@@ -1,4 +1,4 @@
-const utils = require('../utils');
+const axios = require('axios');
 
 function parseData(str) {
     const { JSDOM } = require('jsdom');
@@ -24,10 +24,6 @@ function parseData(str) {
 module.exports = async function () {
     const url = 'https://starlight.kirara.ca/history';
     console.log('Fetch:', url);
-    try {
-        const html = await utils.pRequest({ url });
-        return parseData(html);
-    } catch (err) {
-        return Promise.reject(err);
-    }
+    const res = await axios(url);
+    return parseData(res.data);
 };

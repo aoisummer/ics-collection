@@ -1,21 +1,14 @@
-const utils = require('../utils');
+const axios = require('axios');
 
-function parseData(html) {
-    const { JSDOM } = require('jsdom');
-    const dom = new JSDOM(html);
-    const events = [];
-    
-    dom.window.document.querySelectorAll('.container .table>tbody>tr').forEach((row) => {
-        const summary = row.querySelector('td:nth-of-type(1) .d-lg-inline').textContent;
-        const time1 = Number(row.querySelector('td:nth-of-type(2)>span').getAttribute('data-date'));
-        const time2 = Number(row.querySelector('td:nth-of-type(3)>span').getAttribute('data-date'));
-        const dtstart = new Date(time1 * 1000);
-        const dtend = new Date(time2 * 1000);
-        events.push({
-            "SUMMARY": summary,
-            "DTSTART": dtstart,
-            "DTEND": dtend
-        });
+function parseData(str) {
+    const m = str.match(/<script>window\.fantasia=(.+?)<\/script>/)
+    const data = Function('"use strict";return (' + m[1] + ');')();
+    const events = data.events.map((item) => {
+        return {
+            "SUMMARY": item.name,
+            "DTSTART": item.beginDate,
+            "DTEND": item.endDate
+        };
     });
     events.reverse();
     return events;
@@ -24,10 +17,6 @@ function parseData(html) {
 module.exports = async function () {
     const url = 'https://mltd.matsurihi.me/events/';
     console.log('Fetch:', url);
-    try {
-        const html = await utils.pRequest({ url });
-        return parseData(html);
-    } catch (err) {
-        return Promise.reject(err);
-    }
+    const res = await axios(url);
+    return parseData(res.data);
 };
