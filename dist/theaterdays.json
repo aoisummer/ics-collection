@@ -708,5 +708,10 @@
         "SUMMARY": "ミリコレ！～MILLIONLIVE COLLECTION～",
         "DTSTART": "2020-07-14T06:00:00.000Z",
         "DTEND": "2020-07-18T11:59:59.000Z"
+    },
+    {
+        "SUMMARY": "プラチナスターツアー～Parade d'amour～",
+        "DTSTART": "2020-07-20T06:00:00.000Z",
+        "DTEND": "2020-07-27T11:59:59.000Z"
     }
 ]
