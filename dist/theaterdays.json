@@ -723,5 +723,10 @@
         "SUMMARY": "プラチナスターチューン～BORN ON DREAM!～",
         "DTSTART": "2020-08-03T06:00:00.000Z",
         "DTEND": "2020-08-10T11:59:59.000Z"
+    },
+    {
+        "SUMMARY": "ミリコレ！～MILLIONLIVE COLLECTION～",
+        "DTSTART": "2020-08-12T06:00:00.000Z",
+        "DTEND": "2020-08-17T11:59:59.000Z"
     }
 ]

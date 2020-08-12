@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { httpsOverHttp, httpOverHttp } = require('tunnel-agent');
 
 function parseData(str) {
     const { JSDOM } = require('jsdom');
@@ -25,5 +26,7 @@ module.exports = async function () {
     const url = 'https://starlight.kirara.ca/history';
     console.log('Fetch:', url);
     const res = await axios(url);
+    // const tunnelOptions = { proxy: { port: 1082 } };
+    // const res = await axios(url, { httpAgent: httpOverHttp(tunnelOptions), httpsAgent: httpsOverHttp(tunnelOptions) });
     return parseData(res.data);
 };
