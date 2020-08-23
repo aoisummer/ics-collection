@@ -1,9 +1,9 @@
 const axios = require('axios');
 
 function parseData(str) {
-    const m = str.match(/<script>window\.fantasia=(.+?)<\/script>/)
+    const m = str.match(/fantasia\["events"\]=(\[.+?\]);/);
     const data = Function('"use strict";return (' + m[1] + ');')();
-    const events = data.events.map((item) => {
+    const events = data.map((item) => {
         return {
             "SUMMARY": item.name,
             "DTSTART": item.beginDate,
