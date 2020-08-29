@@ -13,9 +13,12 @@ function parseData(str) {
         const dtend = new Date(Number(times[1].getAttribute('data-ts')) * 1000);
         
         events.push({
-            "SUMMARY": summary,
-            "DTSTART": dtstart,
-            "DTEND": dtend
+            // "SUMMARY": summary,
+            // "DTSTART": dtstart,
+            // "DTEND": dtend
+            "title": summary,
+            "start": dtstart,
+            "end": dtend
         });
     });
     events.reverse();

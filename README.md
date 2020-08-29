@@ -1,4 +1,4 @@
-# The collection of iCalendar format files
+# The collection of iCalendar files
 
 Store for [iCalendar](https://en.wikipedia.org/wiki/ICalendar) files. You can use ics file from `dist` directory directly, but may not up to date all the time.
 

@@ -8,12 +8,15 @@ function convertToICS(data, name) {
         const uid = uuidv3(['http://icalendar.example.com', name, i].join('/'), uuidv3.URL);
         const event = new icalendar.VEvent(uid);
 
-        for (let k in e) {
-            if (!k.match(/^[A-Z-]+$/)) {
-                continue;
-            }
-            event.setProperty(k, e[k]);
-        }
+        // for (let k in e) {
+            // if (!k.match(/^[A-Z-]+$/)) {
+                // continue;
+            // }
+            // event.setProperty(k, e[k]);
+        // }
+        event.setProperty('SUMMARY', e.title);
+        event.setProperty('DTSTART', e.start);
+        event.setProperty('DTEND', e.end);
         ical.addComponent(event);
     });
     return ical.toString();

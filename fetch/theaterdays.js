@@ -5,9 +5,12 @@ function parseData(str) {
     const data = Function('"use strict";return (' + m[1] + ');')();
     const events = data.map((item) => {
         return {
-            "SUMMARY": item.name,
-            "DTSTART": item.beginDate,
-            "DTEND": item.endDate
+            // "SUMMARY": item.name,
+            // "DTSTART": item.beginDate,
+            // "DTEND": item.endDate
+            "title": item.name,
+            "start": item.beginDate,
+            "end": item.endDate
         };
     });
     events.reverse();
