@@ -1,5 +1,8 @@
+const fs = require('fs');
+const fsp = fs.promises;
+const path = require('path');
 const axios = require('axios');
-const { httpsOverHttp, httpOverHttp } = require('tunnel-agent');
+// const { httpsOverHttp, httpOverHttp } = require('tunnel-agent');
 
 function parseData(str) {
     const { JSDOM } = require('jsdom');
@@ -13,23 +16,37 @@ function parseData(str) {
         const dtend = new Date(Number(times[1].getAttribute('data-ts')) * 1000);
         
         events.push({
-            // "SUMMARY": summary,
-            // "DTSTART": dtstart,
-            // "DTEND": dtend
-            "title": summary,
-            "start": dtstart,
-            "end": dtend
+            title: summary,
+            start: dtstart.toISOString(),
+            end: dtend.toISOString(),
         });
     });
     events.reverse();
     return events;
 }
 
-module.exports = async function () {
+module.exports = async () => {
     const url = 'https://starlight.kirara.ca/history';
+    let cache = [];
+
+    try {
+        const content = await fsp.readFile(path.resolve(__dirname, '../dist/' + path.parse(__filename).name + '.json'));
+        cache = JSON.parse(content.toString());
+    } catch (err) {}
+    
+    const cacheKey = cache.map((item) => { return item.title + item.start; });
+    
     console.log('Fetch:', url);
     const res = await axios(url);
     // const tunnelOptions = { proxy: { port: 1082 } };
     // const res = await axios(url, { httpAgent: httpOverHttp(tunnelOptions), httpsAgent: httpsOverHttp(tunnelOptions) });
-    return parseData(res.data);
+    const newData = parseData(res.data);
+
+    newData.forEach((item) => {
+        const key = item.title + item.start;
+        if (cacheKey.indexOf(key) === 0) {
+            cache.push(item);
+        }
+    });
+    return cache;
 };
