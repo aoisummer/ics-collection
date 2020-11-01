@@ -44,7 +44,7 @@ module.exports = async () => {
 
     newData.forEach((item) => {
         const key = item.title + item.start;
-        if (cacheKey.indexOf(key) === 0) {
+        if (cacheKey.indexOf(key) === -1) {
             cache.push(item);
         }
     });
