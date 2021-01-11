@@ -27,12 +27,20 @@ async function webRequest(url, options = {}) {
     return new Promise((resolve, reject) => {
         const chunks = [];
         const req = module.request(url, { timeout: 60 * 1000, ...options }, (res) => {
-            // console.log('statusCode:', res.statusCode);
             res.on('data', (chunk) => {
                 chunks.push(chunk);
             });
             res.on('end', () => {
-                resolve(Buffer.concat(chunks));
+                if (res.statusCode !== 200) {
+                    reject(new Error(res.statusMessage));
+                    return;
+                }
+                const body = Buffer.concat(chunks);
+                resolve({
+                    data: options.raw ? body : body.toString(),
+                    status: res.statusCode,
+                    headers: res.headers,
+                });
             });
         });
         req.on('error', (err) => {
