@@ -33,9 +33,9 @@ module.exports = async () => {
         const content = await fsp.readFile(path.resolve(__dirname, '../dist/' + path.parse(__filename).name + '.json'));
         cache = JSON.parse(content.toString());
     } catch (err) {}
-    
-    const cacheKey = cache.map((item) => { return item.title + item.start; });
-    
+
+    const cacheKey = cache.map((item) => { return item.start; });
+
     console.log('Fetch:', url);
     const res = await axios(url);
     // const tunnelOptions = { proxy: { port: 1082 } };
@@ -43,7 +43,7 @@ module.exports = async () => {
     const newData = parseData(res.data);
 
     newData.forEach((item) => {
-        const key = item.title + item.start;
+        const key = item.start;
         if (cacheKey.indexOf(key) === -1) {
             cache.push(item);
         }

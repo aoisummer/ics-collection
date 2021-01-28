@@ -1,3 +1,6 @@
+const fs = require('fs');
+const fsp = fs.promises;
+const path = require('path');
 const axios = require('axios');
 
 function parseData(str) {
@@ -14,9 +17,26 @@ function parseData(str) {
     return events;
 }
 
-module.exports = async function () {
+module.exports = async () => {
     const url = 'https://mltd.matsurihi.me/events/';
+    let cache = [];
+
+    try {
+        const content = await fsp.readFile(path.resolve(__dirname, '../dist/' + path.parse(__filename).name + '.json'));
+        cache = JSON.parse(content.toString());
+    } catch (err) {}
+
+    const cacheKey = cache.map((item) => { return item.start; });
+
     console.log('Fetch:', url);
     const res = await axios(url);
-    return parseData(res.data);
+    const newData = parseData(res.data);
+
+    newData.forEach((item) => {
+        const key = item.start;
+        if (cacheKey.indexOf(key) === -1) {
+            cache.push(item);
+        }
+    });
+    return cache;
 };
