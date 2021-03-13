@@ -18,3 +18,4 @@ To build yourself, you need a Node.js environment.
 - Game events of *Kantai Collection*
 - Game events of *Kirara Fantasia*
 - Game events of *Princess Connect! Re:Dive* (CN region)
+- Game events of *Uma Musume Pretty Derby*
