@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/aoisummer/ics-collection",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "icalendar": "^0.7.1",
     "iconv-lite": "^0.4.24",
-    "jsdom": "^16.6.0",
+    "jsdom": "^16.7.0",
     "tunnel-agent": "^0.6.0",
     "uuid": "^7.0.3"
   }
