@@ -16,6 +16,6 @@ To build yourself, you need a Node.js environment.
 - Game events of *The Idolmaster Cinderella Girls: Starlight Stage*
 - Game events of *The Idolmaster Million Live: Theater Days*
 - Game events of *Kantai Collection*
-- Game events of *Kirara Fantasia*
 - Game events of *Princess Connect! Re:Dive* (CN region)
 - Game events of *Uma Musume Pretty Derby*
+- Game events of *Blue Archive* (CN region)
