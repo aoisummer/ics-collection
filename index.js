@@ -38,5 +38,5 @@ const utils = require('./utils');
     await fsp.writeFile(file2, utils.convertToICS(data, name));
     console.log(name + ' saved.');
 })().catch((err) => {
-    console.error('Error:', err.message);
+    throw err;
 });
