@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/aoisummer/ics-collection",
   "dependencies": {
-    "axios": "^0.26.0",
+    "axios": "^1.6.0",
     "icalendar": "^0.7.1",
     "iconv-lite": "^0.4.24",
     "jsdom": "^16.7.0",
