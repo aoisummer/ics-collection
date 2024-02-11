@@ -1,7 +1,7 @@
-const fs = require('fs');
-const fsp = fs.promises;
+const fs = require('fs/promises');
 const path = require('path');
-const axios = require('axios');
+
+const utils = require('../utils.js');
 
 function parseData(str) {
     const m = str.match(/fantasia\["events"\]=(\[.+?\]);/);
@@ -22,14 +22,14 @@ module.exports = async () => {
     let cache = [];
 
     try {
-        const content = await fsp.readFile(path.resolve(__dirname, '../dist/' + path.parse(__filename).name + '.json'));
+        const content = await fs.readFile(path.resolve(__dirname, '../dist/' + path.parse(__filename).name + '.json'));
         cache = JSON.parse(content.toString());
     } catch (err) {}
 
     const cacheKey = cache.map((item) => { return item.start; });
 
     console.log('Fetch:', url);
-    const res = await axios(url);
+    const res = await utils.webRequest(url);
     const newData = parseData(res.data);
 
     newData.forEach((item) => {
