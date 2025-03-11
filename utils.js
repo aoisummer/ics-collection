@@ -1,53 +1,68 @@
+const fs = require('node:fs/promises');
 const icalendar = require('icalendar');
 const { v3: uuidv3 } = require('uuid');
 
-function convertToICS(data, name) {
-    const ical = new icalendar.iCalendar();
+exports.convertToICS = function convertToICS(data, name) {
+  const ical = new icalendar.iCalendar();
 
-    data.forEach((e, i) => {
-        const uid = uuidv3(['http://icalendar.example.com', name, i].join('/'), uuidv3.URL);
-        const event = new icalendar.VEvent(uid);
+  data.forEach((e, i) => {
+    const uid = uuidv3(
+      ['http://icalendar.example.com', name, i].join('/'),
+      uuidv3.URL
+    );
+    const event = new icalendar.VEvent(uid);
 
-        event.setProperty('SUMMARY', e.title);
-        event.setProperty('DTSTART', e.start);
-        event.setProperty('DTEND', e.end);
-        ical.addComponent(event);
-    });
-    return ical.toString();
-}
+    event.setProperty('SUMMARY', e.title);
+    event.setProperty('DTSTART', e.start);
+    event.setProperty('DTEND', e.end);
+    ical.addComponent(event);
+  });
+  return ical.toString();
+};
 
-function getType(value) {
-    return Object.prototype.toString.call(value).slice(8, -1);
-}
+exports.getType = function getType(value) {
+  return Object.prototype.toString.call(value).slice(8, -1);
+};
 
-async function webRequest(url, options = {}) {
-    const http = require('http');
-    const https = require('https');
-    const module = new URL(url).protocol === 'https:' ? https : http;
-    return new Promise((resolve, reject) => {
-        const chunks = [];
-        const req = module.request(url, { timeout: 60 * 1000, ...options }, (res) => {
-            res.on('data', (chunk) => {
-                chunks.push(chunk);
-            });
-            res.on('end', () => {
-                if (res.statusCode !== 200) {
-                    reject(new Error(res.statusMessage));
-                    return;
-                }
-                const body = Buffer.concat(chunks);
-                resolve({
-                    data: options.raw ? body : body.toString(),
-                    status: res.statusCode,
-                    headers: res.headers,
-                });
-            });
+exports.webRequest = async function webRequest(url, options = {}) {
+  const http = require('http');
+  const https = require('https');
+  const module = new URL(url).protocol === 'https:' ? https : http;
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    const req = module.request(
+      url,
+      { timeout: 60 * 1000, ...options },
+      (res) => {
+        res.on('data', (chunk) => {
+          chunks.push(chunk);
         });
-        req.on('error', (err) => {
-            reject(err);
+        res.on('end', () => {
+          if (res.statusCode !== 200) {
+            reject(new Error(res.statusMessage));
+            return;
+          }
+          const body = Buffer.concat(chunks);
+          resolve({
+            data: options.raw ? body : body.toString(),
+            status: res.statusCode,
+            headers: res.headers,
+          });
         });
-        req.end();
+      }
+    );
+    req.on('error', (err) => {
+      reject(err);
     });
-}
+    req.end();
+  });
+};
 
-module.exports = { convertToICS, getType, webRequest };
+exports.exists = async function exists(file) {
+  let result = false;
+  try {
+    await fs.access(file);
+    result = true;
+  } catch (e) {}
+  return result;
+};
