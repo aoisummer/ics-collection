@@ -13,8 +13,13 @@ exports.convertToICS = function convertToICS(data, name) {
     const event = new icalendar.VEvent(uid);
 
     event.setProperty('SUMMARY', e.title);
-    event.setProperty('DTSTART', e.start);
-    event.setProperty('DTEND', e.end);
+    if (e.allDay) {
+      event.setProperty('DTSTART', e.start, { VALUE: 'DATE' });
+      event.setProperty('DTEND', e.end, { VALUE: 'DATE' });
+    } else {
+      event.setProperty('DTSTART', e.start);
+      event.setProperty('DTEND', e.end);
+    }
     ical.addComponent(event);
   });
   return ical.toString();
