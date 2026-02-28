@@ -4,21 +4,22 @@ const path = require('path');
 const utils = require('../utils.js');
 
 function parseData(str) {
-    const m = str.match(/fantasia\["events"\]=(\[.+?\]);/);
-    const data = Function('"use strict";return (' + m[1] + ');')();
+    // const m = str.match(/fantasia\["events"\]=(\[.+?\]);/);
+    // const data = Function('"use strict";return (' + m[1] + ');')();
+    const data = JSON.parse(str);
     const events = data.map((item) => {
         return {
             title: item.name,
-            start: item.beginDate.toISOString(),
-            end: item.endDate.toISOString(),
+            start: new Date(item.schedule.beginAt).toISOString(),
+            end: new Date(item.schedule.endAt).toISOString(),
         };
     });
-    events.reverse();
+    // events.reverse();
     return events;
 }
 
 module.exports = async () => {
-    const url = 'https://mltd.matsurihi.me/events/';
+    const url = 'https://api.matsurihi.me/api/mltd/v2/ja/events';
     let cache = [];
 
     try {
