@@ -1,10 +1,10 @@
 {
   "name": "ics-collection",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -17,11 +17,10 @@
     "url": "https://github.com/aoisummer/ics-collection/issues"
   },
   "homepage": "https://github.com/aoisummer/ics-collection",
+  "type": "module",
   "dependencies": {
-    "icalendar": "^0.7.1",
-    "iconv-lite": "^0.4.24",
-    "jsdom": "^16.7.0",
-    "tunnel-agent": "^0.6.0",
-    "uuid": "^7.0.3"
+    "ical-generator": "^11.1.0",
+    "jsdom": "^30.0.1",
+    "uuid": "^14.0.2"
   }
 }
